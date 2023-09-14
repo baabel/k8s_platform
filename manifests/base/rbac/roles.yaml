@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: platform
+  name: platform-reader
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "configmaps", "endpoints", "services"]
+  verbs: ["get", "watch", "list"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "daemonsets", "replicasets", endpoints", "statefulsets"]
+  verbs: ["get", "watch", "list"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: platform
+  name: platform-developer
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "deployments", "services", "configmaps", "secrets", "replicasets"]
+  verbs: ["get", "watch", "list"]
